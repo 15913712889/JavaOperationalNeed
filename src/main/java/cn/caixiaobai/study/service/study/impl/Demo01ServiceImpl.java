@@ -66,7 +66,7 @@ public class Demo01ServiceImpl implements Demo01Service {
         System.out.println(l.toString());
         return ResultVo.success();
     }
-    //通过map一条数据
+    //通过map插入一条数据
     @Override
     public ResultVo insert(HashMap<String, Object> hm) {
 
