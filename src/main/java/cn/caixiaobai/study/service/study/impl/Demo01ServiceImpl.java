@@ -53,6 +53,7 @@ public class Demo01ServiceImpl implements Demo01Service {
         return ResultVo.success();
     }
 
+    //使用map进行查询
     @Override
     public ResultVo query2() {
 
@@ -65,7 +66,7 @@ public class Demo01ServiceImpl implements Demo01Service {
         System.out.println(l.toString());
         return ResultVo.success();
     }
-
+    //通过map一条数据
     @Override
     public ResultVo insert(HashMap<String, Object> hm) {
 
