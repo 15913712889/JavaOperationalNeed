@@ -1,14 +1,18 @@
 package cn.caixiaobai.study.controller.study;
 
+import cn.caixiaobai.study.dto.Person;
 import cn.caixiaobai.study.result.ResultVo;
 import cn.caixiaobai.study.service.study.Demo01Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * created with Intellij IDEA
@@ -44,5 +48,14 @@ public class Demo01Map {
         hm.put("creationTime",new Date());
         hm.put("status",0);
        return demo01Service.insert(hm);
+    }
+
+    //传递数组集合
+    @RequestMapping(value = "/insertObj")
+    @ResponseBody
+    public ResultVo demo4(@RequestBody Person[] p){
+        System.out.println("======"+p.toString());
+        List<Person> people = Arrays.asList(p);
+        return ResultVo.success();
     }
 }
