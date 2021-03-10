@@ -1,6 +1,6 @@
 package cn.caixiaobai.study.controller.study;
 
-import cn.caixiaobai.study.dto.Person;
+import cn.caixiaobai.study.dto.*;
 import cn.caixiaobai.study.result.ResultVo;
 import cn.caixiaobai.study.service.study.Demo01Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,12 +50,36 @@ public class Demo01Map {
        return demo01Service.insert(hm);
     }
 
-    //传递数组集合
+    //传递数组集合 用的数组接受，可以免写dto
     @RequestMapping(value = "/insertObj")
     @ResponseBody
     public ResultVo demo4(@RequestBody Person[] p){
         System.out.println("======"+p.toString());
         List<Person> people = Arrays.asList(p);
+        return ResultVo.success();
+    }
+
+    //传递多个不同对象
+    @RequestMapping(value = "/insertObjs")
+    @ResponseBody
+    public ResultVo demo5(@RequestBody StudentAndTeacherDto dto){
+        System.out.println("=======");
+        return ResultVo.success();
+    }
+
+//    //传递多个不同对象
+//    @RequestMapping(value = "/insertObjss")
+//    @ResponseBody
+//    public ResultVo demo7(@RequestBody List<Student> student, @RequestBody List<Teacher> teacher){
+//        System.out.println("=======");
+//        return ResultVo.success();
+//    }
+
+    //传递单个对象中属性中带集合
+    @RequestMapping(value = "/insertObjsList")
+    @ResponseBody
+    public ResultVo demo6(@RequestBody ObjsListDto objsListDto){
+        System.out.println("=======");
         return ResultVo.success();
     }
 }
