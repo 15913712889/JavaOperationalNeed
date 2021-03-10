@@ -35,7 +35,7 @@ public class WebMVCConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/login/user")//不拦截登录请求
                // .excludePathPatterns("/static/*/*")   这个方式在String5.3之后没用
                 .excludePathPatterns("/layui-v2.5.6/**")
-                .excludePathPatterns("/js/*");;
+                .excludePathPatterns("/js/*");
     }
 
 

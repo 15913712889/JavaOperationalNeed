@@ -98,8 +98,14 @@
             </div>
           </div>
         </form>
-        <button type="button" class="layui-btn" onclick="insertObj()">传递对象</button>
+        <button type="button" class="layui-btn" onclick="insertObj()">传递对象-数组</button>
 
+        <button type="button" class="layui-btn" onclick="insertObjs()">传递对象-多个不同对象</button>
+
+        <button type="button" class="layui-btn" onclick="insertObjss()">传递对象-多个不同对象集合</button>
+
+        <button type="button" class="layui-btn" onclick="insertObjsList()">传递对象-数据中嵌套对象集合</button>
+        <img id="img" th:src="@{/test/getVCode}" /><a href="javascript:void(0);"  onclick="myFlash()">看不清</a>
       </div>
       
       <div class="layui-footer">
@@ -109,7 +115,12 @@
     </div>
     <script>
          window.ctx="[[@{/}]]";
-    
+         var verifyURL=$("#img").attr('src');//动态获取img-URL
+         //刷新验证码
+         function myFlash(){
+            $("#img").attr('src',verifyURL+"?randomNum="+Math.random());
+         }
+
         //JavaScript代码区域
         layui.use(['element','form'], function(){
             var element = layui.element;
@@ -135,6 +146,11 @@
             });
         });
 
+         /**
+          * █████████████████████████████████████████████████████████████████████████████
+          *   传递多个相同的对象，后台用数组可以接收
+          *
+          */
         function insertObj(){
             //模拟往list集合放入对象
             var array = [];
@@ -159,6 +175,118 @@
                 }
             })
         }
+
+         /**
+          * █████████████████████████████████████████████████████████████████████████████
+          *   传递多个不同的对象，不是集合
+          *
+          */
+         function  insertObjs() {
+              var student = new Object();
+                  student.name = "1号学生";
+                  student.age = 18;
+                  student.sex = 1;
+
+              var teacher = new Object();
+                  teacher.name = "1号老师";
+                  teacher.hobby = "打篮球";
+                  teacher.address = "江西";
+
+              $.ajax({
+                  type:"POST",
+                  url:ctx+"test/insertObjs",
+                  dataType: "json",
+                  contentType:"application/json", // 指定这个协议很重要
+                  data: JSON.stringify({
+                    "student":student,
+                    "teacher":teacher
+                  }),   //重要
+                  success:function (res) {
+
+                  }
+              })
+         }
+
+
+
+         // /**
+         //  * █████████████████████████████████████████████████████████████████████████████
+         //  *   传递多个不同对象集合
+         //  *
+         //  */
+         // function  insertObjss() {
+         //   // var student = new Object();
+         //   // student.name = "1号学生";
+         //   // student.age = 18;
+         //   // student.sex = 1;
+         //
+         //   // var teacher = new Object();
+         //   // teacher.name = "1号老师";
+         //   // teacher.hobby = "打篮球";
+         //   // teacher.address = "江西";
+         //
+         //
+         //   //模拟往list集合放入对象
+         //   var student = [];
+         //   for(var i=0;i<5;i++){
+         //     student[i] = new Object();
+         //     student[i].name = "学生"+i;
+         //     student[i].age = "2"+i;
+         //     student[i].sex = "1";
+         //   }
+         //
+         //   //模拟往list集合放入对象
+         //   var teacher = [];
+         //   for(var j=0;j<5;j++){
+         //     teacher[j] = new Object();
+         //     teacher[j].name = "老师"+j;
+         //     teacher[j].hobby = "学习"+j;
+         //     teacher[j].address = "江西"+j;
+         //   }
+         //
+         //   $.ajax({
+         //     type:"POST",
+         //     url:ctx+"test/insertObjss",
+         //     dataType: "json",
+         //     contentType:"application/json", // 指定这个协议很重要
+         //     data:
+         //             {student:JSON.stringify( student)},   //重要
+         //     success:function (res) {
+         //
+         //     }
+         //   })
+         // }
+
+         /**
+          * █████████████████████████████████████████████████████████████████████████████
+          *   传递多个同同的对象
+          *
+          */
+         function insertObjsList(){
+              var arr = [];
+              for(var i=0; i<5; i++){
+                  var student = new Object();
+                  student.name = "学生"+i;
+                  student.age = 18+i;
+                  student.sex = 0+i;
+                  arr.push(student);
+              }
+              console.log(JSON.stringify(arr));
+              $.ajax({
+                type:"POST",
+                url:ctx+"test/insertObjsList",
+                dataType: "json",
+                contentType:"application/json", // 指定这个协议很重要
+                data: JSON.stringify({
+                  "year":2021,
+                  "classNo":"170107",
+                  "stuList":arr
+                }),   //重要
+                success:function (res) {
+
+                }
+              })
+         }
     </script>
     </body>
 
