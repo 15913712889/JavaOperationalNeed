@@ -9,10 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * created with Intellij IDEA
@@ -80,6 +77,16 @@ public class Demo01Map {
     @ResponseBody
     public ResultVo demo6(@RequestBody ObjsListDto objsListDto){
         System.out.println("=======");
+        return ResultVo.success();
+    }
+
+
+    //传递map
+    @RequestMapping(value = "/insertMapObj")
+    @ResponseBody
+    public ResultVo demo7(@RequestBody Map<String,Object> mapObj){
+        System.out.println("=======");
+        Integer id = (Integer)mapObj.get("id");
         return ResultVo.success();
     }
 }

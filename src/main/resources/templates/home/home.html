@@ -106,6 +106,8 @@
 
         <button type="button" class="layui-btn" onclick="insertObjsList()">传递对象-数据中嵌套对象集合</button>
         <img id="img" th:src="@{/test/getVCode}" /><a href="javascript:void(0);"  onclick="myFlash()">看不清</a>
+
+        <button type="button" class="layui-btn" onclick="insertMapObj()">传递Map对象-多个不同参数</button>
       </div>
       
       <div class="layui-footer">
@@ -287,6 +289,25 @@
                 }
               })
          }
+
+        //传递map
+        function insertMapObj(){
+
+          $.ajax({
+            type:"POST",
+            url:ctx+"test/insertMapObj",
+            dataType: "json",
+            contentType:"application/json", // 指定这个协议很重要
+            data: JSON.stringify(
+                    {"id":10,"name":"梁山伯","age":25,"date":new Date()}
+            ),   //重要
+            success:function (res) {
+
+            }
+          })
+         }
+
+
     </script>
     </body>
 
