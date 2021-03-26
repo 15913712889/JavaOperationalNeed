@@ -108,6 +108,8 @@
         <img id="img" th:src="@{/test/getVCode}" /><a href="javascript:void(0);"  onclick="myFlash()">看不清</a>
 
         <button type="button" class="layui-btn" onclick="insertMapObj()">传递Map对象-多个不同参数</button>
+
+        <button type="button" class="layui-btn" onclick="insertMapObjForGet()">传递Map对象-多个不同参数以GET方式</button>
       </div>
       
       <div class="layui-footer">
@@ -307,6 +309,21 @@
           })
          }
 
+         //insertMapObjForGet
+         function insertMapObjForGet(){
+             $.ajax({
+               type:"GET",
+               url:ctx+"test/insertMapObjForGet",
+               data: {
+                     ajaxid: 4,
+                     UserID: "UserID",
+                     EmailAddress: "EmailAddress"
+               },
+                success:function (res) {
+
+               }
+           })
+         }
 
     </script>
     </body>

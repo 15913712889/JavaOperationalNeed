@@ -5,9 +5,7 @@ import cn.caixiaobai.study.result.ResultVo;
 import cn.caixiaobai.study.service.study.Demo01Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -81,7 +79,7 @@ public class Demo01Map {
     }
 
 
-    //传递map
+    //传递map  使用的是post请求
     @RequestMapping(value = "/insertMapObj")
     @ResponseBody
     public ResultVo demo7(@RequestBody Map<String,Object> mapObj){
@@ -89,4 +87,15 @@ public class Demo01Map {
         Integer id = (Integer)mapObj.get("id");
         return ResultVo.success();
     }
+
+    //测试get
+    @RequestMapping(value = "/insertMapObjForGet",method = RequestMethod.GET)
+    @ResponseBody
+    public ResultVo demo8(@RequestParam Map<String,Object> mapObj){
+        System.out.println("=======");
+        Integer id = (Integer)mapObj.get("id");
+        return ResultVo.success();
+    }
+
+
 }
