@@ -9,7 +9,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.Environment;
 
 @SpringBootApplication
-@MapperScan(value = "cn.caixiaobai.study.dao")
+@MapperScan(value = {"cn.caixiaobai.study.dao","cn.caixiaobai.study.mapper.*"})
 public class StudyApplication {
 
     public static void main(String[] args) {
