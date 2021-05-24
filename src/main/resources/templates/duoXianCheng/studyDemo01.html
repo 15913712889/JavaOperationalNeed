@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>学习多线程查询</title>
+    <!--layui css static\layui-v2.5.6\layui\css\layui.css-->
+    <link href="static/layui-v2.5.6/layui/css/layui.css"  th:href="@{/layui-v2.5.6/layui/css/layui.css}" rel="stylesheet" />
+    <!--layui-->
+    <script type="text/javascript" src="layui/layui.js" th:src="@{/layui-v2.5.6/layui/layui.js}"></script>
+    <!--jquery-->
+    <script type="text/javascript" src="../js/jquery/jquery-3.3.1.js" th:src="@{/js/jquery/jquery-3.3.1.js}"></script>
+</head>
+<body>
+     <button id="demo01" type="button" class="layui-btn">实现多线程查询</button>
+     <button id="demo02" type="button" class="layui-btn">实现多线程查询2</button>
+</body>
+    <script type="text/javascript">
+        window.ctx="[[@{/}]]";//当前项目路径
+        $("#demo01").click(function () {
+            $.post(ctx+"duoXianCheng/query",function (result) {
+                console.log("返回结果如下：");
+                console.log(result);
+            })
+        });
+        $("#demo02").click(function () {
+            $.post(ctx+"duoXianCheng/query2",function (result) {
+                console.log("返回结果如下：");
+                console.log(result);
+            })
+        });
+    </script>
+</html>
