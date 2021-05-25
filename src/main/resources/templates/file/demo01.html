@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--jquery-->
+    <script type="text/javascript" src="../js/jquery/jquery-3.3.1.js" th:src="@{/js/jquery/jquery-3.3.1.js}"></script>
+<!--    <script type="text/javascript" src="../js/xlax.core.min.js" th:src="@{/js/xlsx.core.min.js}"></script>-->
+    <script type="text/javascript" src="../js/xlax.full.min.js" th:src="@{/js/xlsx.full.min.js}"></script>
+</head>
+<body>
+
+        <button onclick="test01()">上传</button>
+        <!--   onchange="test02()"     -->
+        <input id="myFileId" class="myFileClass" name="myFile" type="file" style="display: none" onchange="importf(this)"/>
+
+        <script type="text/javascript">
+
+            function test01() {
+                    $("#myFileId").click();
+            }
+            var json;
+            var wb;//读取完成的数据
+            var rABS = false; //是否将文件读取为二进制字符串
+            function importf(obj) {//导入
+                if(!obj.files) {
+                    return;
+                }
+                var f = obj.files[0];
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var data = e.target.result;
+                    if(rABS) {
+                        wb = XLSX.read(btoa(fixdata(data)), {//手动转化
+                            type: 'base64'
+                        });
+                    } else {
+                        wb = XLSX.read(data, {
+                            type: 'binary'
+                        });
+                    }
+                    //wb.SheetNames[0]是获取Sheets中第一个Sheet的名字
+                    //wb.Sheets[Sheet名]获取第一个Sheet的数据
+                    //document.getElementById("demo").innerHTML= JSON.stringify( XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]) );
+                    json = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
+
+                    console.dir(json);
+                };
+                if(rABS) {
+                    reader.readAsArrayBuffer(f);
+                } else {
+                    reader.readAsBinaryString(f);
+                }
+            }
+
+    </script>
+</body>
+</html>
