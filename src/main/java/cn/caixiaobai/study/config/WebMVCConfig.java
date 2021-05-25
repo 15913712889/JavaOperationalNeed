@@ -16,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * describe(描述):
  * to change this template use file | settings| Editor | file and code Templates | includes | file header .
  */
-@Configuration
+//@Configuration
 public class WebMVCConfig implements WebMvcConfigurer {
 
     @Autowired

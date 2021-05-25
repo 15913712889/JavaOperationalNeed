@@ -1,5 +1,8 @@
 package cn.caixiaobai.study.test01;
 
+import cn.hutool.crypto.SecureUtil;
+import cn.hutool.crypto.asymmetric.Sign;
+import cn.hutool.crypto.asymmetric.SignAlgorithm;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,4 +30,16 @@ public class TestDemo01 {
         System.out.println("s的当前容量是："+capacity);
     }
 
+
+
+    @Test
+    public void demo02(){
+        byte[] data = "我是一段测试字符串".getBytes();
+        Sign sign = SecureUtil.sign(SignAlgorithm.MD5withRSA);
+        //签名
+        byte[] signed = sign.sign(data);
+        //验证签名
+        boolean verify = sign.verify(data, signed);
+        System.out.println("======："+verify);
+    }
 }

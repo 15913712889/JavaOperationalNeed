@@ -1,25 +1,26 @@
 package cn.caixiaobai.study.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
- * 用户表
+ * 测试 用户表
  * </p>
  *
  * @author 蔡序强
- * @since 2021-03-08
+ * @since 2021-05-24
  */
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 主键id
+     * 用户表id
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
@@ -36,21 +37,15 @@ public class User implements Serializable {
     private String password;
 
     /**
-     * 创建时间
-     */
-    @TableField("creationTime")
-    private Date creationTime;
-
-    /**
-     * 修改时间
-     */
-    @TableField("modificationTime")
-    private Date modificationTime;
-
-    /**
-     * 是否删除,0表示已删除，1表示未删除
+     * 删除标识，1-未删除  0 -已删除
      */
     private Integer status;
+
+    /**
+     * 创建时间（日期+时间）
+     */
+    @TableField("createDate")
+    private Date createDate;
 
     public Integer getId() {
         return id;
@@ -73,26 +68,19 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    public Date getCreationTime() {
-        return creationTime;
-    }
-
-    public void setCreationTime(Date creationTime) {
-        this.creationTime = creationTime;
-    }
-    public Date getModificationTime() {
-        return modificationTime;
-    }
-
-    public void setModificationTime(Date modificationTime) {
-        this.modificationTime = modificationTime;
-    }
     public Integer getStatus() {
         return status;
     }
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
     @Override
@@ -101,9 +89,9 @@ public class User implements Serializable {
         "id=" + id +
         ", userName=" + userName +
         ", password=" + password +
-        ", creationTime=" + creationTime +
-        ", modificationTime=" + modificationTime +
         ", status=" + status +
+        ", createDate=" + createDate +
         "}";
     }
 }
+
