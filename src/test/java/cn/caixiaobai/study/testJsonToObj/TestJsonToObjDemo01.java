@@ -39,7 +39,7 @@ public class TestJsonToObjDemo01 {
             lu.add(user);
         }
         ResultVo resultVo = new ResultVo(lu);
-        String str = "{'code':200,'message':'操作成功！','data':" +
+        String str = "{'code':200,'message':'操作成功！','obj':" +
                 "[" +
                 "{'id':1,'userName':'用户名1','password':'密码1','status':1}" +
                 "]" +
@@ -49,6 +49,8 @@ public class TestJsonToObjDemo01 {
         JSONObject jsonObject = JSONUtil.parseObj(str);
         //方法二：new的方式转换
         JSONObject jsonObject2 = new JSONObject(str);
+        //json对象转javaBean(参数为javaBean的类对象，注意不是实体对象)
+        ResultVo resultVo1 = jsonObject.toBean(ResultVo.class);
 
         log.info("=====");
     }
