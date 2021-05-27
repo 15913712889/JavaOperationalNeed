@@ -115,6 +115,15 @@
             <scope>provided</scope>
         </dependency>
 
+        <!--     java对象内存布局   -->
+        <!-- https://mvnrepository.com/artifact/org.openjdk.jol/jol-core -->
+        <dependency>
+            <groupId>org.openjdk.jol</groupId>
+            <artifactId>jol-core</artifactId>
+            <version>0.9</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
