@@ -25,11 +25,12 @@ public class StudyDemo01Mybatis {
      * 测试批量插入
      * @return
      */
-        @RequestMapping(value = "`/study/mybatis/insertBatch`")
+        @RequestMapping(value = "/study/mybatis/insertBatch")
     @ResponseBody
     public ResultVo demo01(){
 
         return studyDemo01MybatisService.demo01();
     }
+
 
 }
