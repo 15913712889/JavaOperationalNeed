@@ -97,5 +97,11 @@ public class Demo01Map {
         return ResultVo.success();
     }
 
-
+    //传递数组到controller transmitArrInController
+    @RequestMapping(value = "/transmitArrInController",method = RequestMethod.POST)
+    @ResponseBody
+    public ResultVo demo8(@RequestBody List<Integer> arr){
+        System.out.println("=======");
+        return ResultVo.success();
+    }
 }
