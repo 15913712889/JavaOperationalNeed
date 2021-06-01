@@ -110,6 +110,9 @@
         <button type="button" class="layui-btn" onclick="insertMapObj()">传递Map对象-多个不同参数</button>
 
         <button type="button" class="layui-btn" onclick="insertMapObjForGet()">传递Map对象-多个不同参数以GET方式</button>
+
+        <button type="button" class="layui-btn" onclick="transmitArrInController()">传递数组到controller</button>
+
       </div>
       
       <div class="layui-footer">
@@ -325,6 +328,29 @@
            })
          }
 
+         /**
+          *传递数组到controller
+          */
+         function transmitArrInController(){
+
+           var arr = [];//也可以是一个对象arr,后台照相可以接受
+           arr.push(1);
+           arr.push(2);
+           arr.push(3);
+           arr.push(4);
+           arr.push(5);
+
+           $.ajax({
+             type:"POST",
+             url:ctx+"test/transmitArrInController",
+             data: JSON.stringify(arr),
+             dataType: 'JSON',
+             contentType: "application/json;charset=utf-8",
+             success:function (res) {
+                console.log(res);
+             }
+           })
+         }
     </script>
     </body>
 
